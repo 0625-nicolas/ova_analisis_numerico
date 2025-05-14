@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/analisis-numerico-service")
+@RequestMapping("/api/analisis-service")
 public class JNIRestController {
     private CalculadoraAnalisis miCalculadora;
 
@@ -15,13 +15,8 @@ public class JNIRestController {
         this.miCalculadora = new CalculadoraAnalisis();
     }
 
-    @GetMapping("/interpolacion/{puntosX}/{puntosY}/{x}")
-    public double interpolacion(@PathVariable double[] puntosX, @PathVariable double[] puntosY, @PathVariable double x){
-        double[][] puntos = new double[puntosX.length][2];
-        for (int i = 0; i < puntosX.length; i++) {
-            puntos[i][0] = puntosX[i];
-            puntos[i][1] = puntosY[i];
-        }
-        return miCalculadora.interpolacion(puntos , x);
+    @GetMapping("/interpolar/{x}/{puntosX}/{puntosY}")
+    public double interpolacion(@PathVariable double x, @PathVariable double[] puntosX, @PathVariable double[] puntosY){
+        return miCalculadora.interpolar(puntosX, puntosY, x);
     }
 }

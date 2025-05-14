@@ -1,6 +1,6 @@
 services:
   spring-jni:
-    image: 'camilosuarez137/analisis-numerico-service:latest'
+    image: 'nicoguti0625/analisis-service:latest'
     ports:
       - '8083:8080'
     networks:
